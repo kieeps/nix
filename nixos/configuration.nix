@@ -10,6 +10,9 @@
 }: {
   # You can import other NixOS modules here
   imports = [
+    # Import home-manager's NixOS module
+    inputs.home-manager.nixosModules.home-manager
+
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
 
@@ -23,6 +26,15 @@
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
   ];
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs outputs; };
+    users = {
+      # Import your home-manager configuration
+      kieeps = import ../home-manager/home.nix;
+    };
+  };
+}
 
   nixpkgs = {
     # You can add overlays here
@@ -70,7 +82,8 @@
     # Deduplicate and optimize nix store
     auto-optimise-store = true;
   };
-
+  environment.systemPackages =
+    [ inputs.home-manager.packages.${pkgs.system}.default ];
   # FIXME: Add the rest of your current configuration
 
   # TODO: Set your hostname

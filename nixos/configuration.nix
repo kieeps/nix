@@ -34,7 +34,7 @@
       kieeps = import ../home-manager/home.nix;
     };
   };
-}
+
 
   nixpkgs = {
     # You can add overlays here
@@ -86,11 +86,109 @@
     [ inputs.home-manager.packages.${pkgs.system}.default ];
   # FIXME: Add the rest of your current configuration
 
+  programs.zsh = {
+    enable = true;
+    enableGlobalCompInit = false;
+    ohMyZsh = {
+      enable = true;
+      theme = "bira";
+      customPkgs = with pkgs; [
+        zsh-git-prompt
+        zsh-nix-shell
+        zsh-completions
+        zsh-command-time
+        zsh-fast-syntax-highlighting
+        nix-zsh-completions
+      ];
+    };
+  };
+
+
+#  oh-my-zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
+  # Vulcan
+  hardware.opengl.driSupport = true;
+
+  networking.networkmanager.enable = true;
+
+  time.timeZone = "Europe/Stockholm";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "sv_SE.UTF-8";
+    LC_IDENTIFICATION = "sv_SE.UTF-8";
+    LC_MEASUREMENT = "sv_SE.UTF-8";
+    LC_MONETARY = "sv_SE.UTF-8";
+    LC_NAME = "sv_SE.UTF-8";
+    LC_NUMERIC = "sv_SE.UTF-8";
+    LC_PAPER = "sv_SE.UTF-8";
+    LC_TELEPHONE = "sv_SE.UTF-8";
+    LC_TIME = "sv_SE.UTF-8";
+  };
+
+  # enable the tailscale service
+  services.tailscale.enable = true;
+  # enable TLP Service
+  services.tlp.enable = true;
+  services.power-profiles-daemon.enable = false;
+
+  ## virtualisation
+  virtualisation.docker.enable = true;
+
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+
+  # Enable the KDE Plasma Desktop Environment.
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "se";
+    xkbVariant = "";
+  };
+
+  # Configure console keymap
+  console.keyMap = "sv-latin1";
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
+
+  # Enable automatic login for the user.
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "kieeps";
+
   # TODO: Set your hostname
   networking.hostName = "lappen";
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
+
+environment.sessionVariables = {
+  MOZ_USE_XINPUT2 = "1";
+};
+
+
 
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
@@ -122,5 +220,5 @@
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }

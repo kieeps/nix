@@ -49,12 +49,18 @@
 
   # TODO: Set your username
   home = {
+<<<<<<< HEAD
     username = "kieeps";
     homeDirectory = "/home/kieeps";
+=======
+    username = "your-username";
+    homeDirectory = "/home/your-username";
+>>>>>>> 75e6210 (redoing everything)
   };
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
+<<<<<<< HEAD
   home.packages = with pkgs; [
     kcalc
     firefox
@@ -76,6 +82,9 @@
     yubikey-manager-qt
     protonup-ng
   ];
+=======
+  # home.packages = with pkgs; [ steam ];
+>>>>>>> 75e6210 (redoing everything)
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
@@ -85,5 +94,9 @@
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+<<<<<<< HEAD
   home.stateVersion = "23.11";
+=======
+  home.stateVersion = "23.05";
+>>>>>>> 75e6210 (redoing everything)
 }

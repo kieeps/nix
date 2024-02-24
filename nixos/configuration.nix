@@ -10,9 +10,12 @@
 }: {
   # You can import other NixOS modules here
   imports = [
+<<<<<<< HEAD
     # Import home-manager's NixOS module
     inputs.home-manager.nixosModules.home-manager
 
+=======
+>>>>>>> 75e6210 (redoing everything)
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
 
@@ -27,6 +30,7 @@
     ./hardware-configuration.nix
   ];
 
+<<<<<<< HEAD
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users = {
@@ -36,6 +40,8 @@
   };
 
 
+=======
+>>>>>>> 75e6210 (redoing everything)
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -82,6 +88,7 @@
     # Deduplicate and optimize nix store
     auto-optimise-store = true;
   };
+<<<<<<< HEAD
   environment.systemPackages =
     [ inputs.home-manager.packages.${pkgs.system}.default ];
   # FIXME: Add the rest of your current configuration
@@ -180,10 +187,18 @@
 
   # TODO: Set your hostname
   networking.hostName = "lappen";
+=======
+
+  # FIXME: Add the rest of your current configuration
+
+  # TODO: Set your hostname
+  networking.hostName = "your-hostname";
+>>>>>>> 75e6210 (redoing everything)
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
 
+<<<<<<< HEAD
 environment.sessionVariables = {
   MOZ_USE_XINPUT2 = "1";
 };
@@ -198,12 +213,26 @@ environment.sessionVariables = {
       # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
       # Be sure to change it (using passwd) after rebooting!
       initialPassword = "1337password";
+=======
+  # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
+  users.users = {
+    # FIXME: Replace with your username
+    your-username = {
+      # TODO: You can set an initial password for your user.
+      # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
+      # Be sure to change it (using passwd) after rebooting!
+      initialPassword = "correcthorsebatterystaple";
+>>>>>>> 75e6210 (redoing everything)
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
+<<<<<<< HEAD
       extraGroups = ["networkmanager" "wheel" "docker"];
+=======
+      extraGroups = ["wheel"];
+>>>>>>> 75e6210 (redoing everything)
     };
   };
 
@@ -220,5 +249,9 @@ environment.sessionVariables = {
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+<<<<<<< HEAD
   system.stateVersion = "23.11";
+=======
+  system.stateVersion = "23.05";
+>>>>>>> 75e6210 (redoing everything)
 }

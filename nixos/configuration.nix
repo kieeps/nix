@@ -166,9 +166,6 @@
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "kieeps";
 
-  # TODO: Set your hostname
-  networking.hostName = "lappen";
-
   # FIXME: Add the rest of your current configuration
 
   # TODO: Set your hostname

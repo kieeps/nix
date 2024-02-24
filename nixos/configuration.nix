@@ -172,7 +172,7 @@
   # FIXME: Add the rest of your current configuration
 
   # TODO: Set your hostname
-  networking.hostName = "your-hostname";
+  networking.hostName = "lappen";
 
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
